@@ -1,13 +1,17 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Filtros({ filtrarTareas }) {
-  return (
-    <div>
-      <button onClick={() => filtrarTareas("Todas")}>Todas</button>
-      <button onClick={() => filtrarTareas("Pendientes")}>Pendientes</button>
-      <button onClick={() => filtrarTareas("Completadas")}>Completadas</button>
-    </div>
-  );
+    return (
+        <div className="mb-3">
+            <label htmlFor="filtroSelect" className="form-label">Filtrar por:</label>
+            <select id="filtroSelect" className="form-select" onChange={(e) => filtrarTareas(e.target.value)}>
+                <option value="Todas">Todas</option>
+                <option value="Pendientes">Pendientes</option>
+                <option value="Completadas">Completadas</option>
+            </select>
+        </div>
+    );
 }
 
 export default Filtros;

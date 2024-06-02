@@ -1,37 +1,31 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TareaForm({ agregarTarea }) {
-  const [texto, setTexto] = useState("");
-  const [error, setError] = useState("");
+    const [texto, setTexto] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (texto.trim() === "") {
-      setError("El campo no puede estar vacío");
-      return;
-    }
-    agregarTarea(texto);
-    setTexto("");
-    setError("");
-  };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (texto.trim()) {
+            agregarTarea(texto);
+            setTexto("");
+        }
+    };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Añadir tarea..."
-        value={texto}
-        onChange={(e) => setTexto(e.target.value)}
-      />
-      <button type="submit">Agregar Tarea</button>
-      {error && <p>{error}</p>}
-    </form>
-  );
+    return (
+        <form onSubmit={handleSubmit} className="mb-3">
+            <div className="input-group">
+                <input
+                    type="text"
+                    className="form-control"
+                    value={texto}
+                    onChange={(e) => setTexto(e.target.value)}
+                    placeholder="Añadir nueva tarea"
+                />
+                <button type="submit" className="btn btn-primary">Añadir</button>
+            </div>
+        </form>
+    );
 }
-
-TareaForm.propTypes = {
-  agregarTarea: PropTypes.func.isRequired
-};
 
 export default TareaForm;
